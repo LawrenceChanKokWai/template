@@ -36,8 +36,9 @@ class Users extends Component{
 
   }
 
-  DeleteUser =()=>{
-    console.log("delete")
+  DeleteUser =(key)=>{
+    var userstate = this.state.users
+    console.log(userstate[key]);
 
   }
     render(){
@@ -50,7 +51,7 @@ class Users extends Component{
           <table class="table table-hover">
           <thead>
             <tr>
-        
+            <th scope="col">No.</th>
               <th scope="col">Email</th>
               <th scope="col">Password</th>
               <th scope="col"></th>
@@ -64,11 +65,11 @@ class Users extends Component{
           { this.state.users.map((user, key) =>{
             return (
               <tr key = {key}>
-   
+              <td>{key + 1}</td>
               <td> {user.email}</td>
               <td> {user.password}</td>
               <td> 
-                <button onSubmit={this.DeleteUser()} value='Delete' type="submit" className="btn btn-danger btn-block" >Delete</button></td>
+                <button onClick={e => this.DeleteUser(e.target.value)} value={key} type="submit" className="btn btn-danger btn-block" >Delete</button></td>
               
             </tr>
 
